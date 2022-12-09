@@ -6,18 +6,18 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('oc_lettings_site', '0003_delete_profile'),
+        ("oc_lettings_site", "0003_delete_profile"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='letting',
-            name='address',
+            model_name="letting",
+            name="address",
         ),
         migrations.DeleteModel(
-            name='Address',
+            name="Address",
         ),
         migrations.DeleteModel(
-            name='Letting',
+            name="Letting",
         ),
     ]
