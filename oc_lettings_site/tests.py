@@ -1,8 +1,7 @@
-import pytest
 
 
 def test_circle():
     """for setup circle CI"""
-    test = True
+    test = 'ok'
 
-    assert test == True
+    assert test == 'ok'

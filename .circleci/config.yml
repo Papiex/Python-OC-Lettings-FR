@@ -19,6 +19,6 @@ jobs:
           command: flake8
 
 workflows:
-  Run Tests:
+  Run Tests and Linter:
     jobs:
       - build-and-test
