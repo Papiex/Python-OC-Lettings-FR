@@ -1,12 +1,12 @@
 version: 2.1
 
 orbs:
-  python: circleci/python@1.2 # The Windows orb gives you everything you need to start using the Windows executor.
+  python: circleci/python@3.9
 
 jobs:
   build-and-test:
     docker:
-      - image: cimg/python:3.8
+      - image: cimg/python:3.9
     steps:
       - checkout
       - python/install-packages:
@@ -14,6 +14,9 @@ jobs:
       - run:
           name: Run tests
           command: pytest
+      - run:
+          name: Run Linter
+          command: flake8
 
 workflows:
   Run Tests:
