@@ -16,6 +16,6 @@ jobs:
           command: pytest
 
 workflows:
-  my-workflow:
+  Run Tests:
     jobs:
       - build-and-test
