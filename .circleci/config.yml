@@ -13,7 +13,7 @@ jobs:
           pkg-manager: pip
       - run:
           name: Run tests
-          command: pytest
+          command: pytest --pyargs
       - run:
           name: Run Linter
           command: flake8
