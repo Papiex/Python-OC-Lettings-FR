@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  win: circleci/python@1.2 # The Windows orb gives you everything you need to start using the Windows executor.
+  python: circleci/python@1.2 # The Windows orb gives you everything you need to start using the Windows executor.
 
 jobs:
   build-and-test:
