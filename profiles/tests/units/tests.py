@@ -3,7 +3,7 @@ import pytest
 
 
 @pytest.mark.django_db
-def test_index_should_return_200(client):
+def test_profile_index_should_return_200(client):
     response = client.get(reverse("profiles:index"))
     response_data = response.content.decode()
 
