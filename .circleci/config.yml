@@ -39,8 +39,6 @@ workflows:
   Run Tests and Linter:
     jobs:
       - build-and-test
-  Docker Deployment:
-    jobs:
       - docker_deployment:
           requires:
-            - build-and-tests
+            - build-and-test
