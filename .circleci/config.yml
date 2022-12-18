@@ -28,9 +28,9 @@ jobs:
       - run:
           name: Deployment of the image to DockerHub
           command: |
-            docker login -u ${secrets.DOCKER_HUB_USERNAME} -p ${secrets.DOCKER_HUB_ACCESS_TOKEN}
-            docker build -t ${secrets.DOCKER_HUB_USERNAME}/$CIRCLE_SHA1 .
-            docker push ${secrets.DOCKER_HUB_USERNAME}/python-oc-lettings-fr/$CIRCLE_SHA1:latest
+            docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_ACCESS_TOKEN}
+            docker build -t ${DOCKER_HUB_USERNAME}/$CIRCLE_SHA1 .
+            docker push ${DOCKER_HUB_USERNAME}/python-oc-lettings-fr/$CIRCLE_SHA1:latest
 
 
 workflows:
