@@ -6,7 +6,7 @@ Site web d'Orange County Lettings
 
 ### Prérequis
 
-- Compte GitHub avec accès en lecture à ce repository
+- Compte GitHub avec accès en lecture à ce repository.
 - Git CLI
 - SQLite3 CLI
 - Interpréteur Python, version 3.6 ou supérieure
@@ -73,5 +73,5 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 
 Utilisation de PowerShell, comme ci-dessus sauf :
 
-- Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
+- Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1`
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
