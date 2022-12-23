@@ -33,6 +33,7 @@ jobs:
             docker push ${DOCKER_HUB_USERNAME}/python-oc-lettings-fr/$CIRCLE_SHA1:latest
 
 
+
 workflows:
   Run Tests and Linter:
     jobs:
