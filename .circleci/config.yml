@@ -28,8 +28,8 @@ jobs:
       - run:
           name: Deployment of the image to DockerHub
           command: |
-            echo ${DOCKER_HUB_USERNAME}
-            echo ${DOCKER_HUB_ACCESS_TOKEN}
+            echo $DOCKER_HUB_USERNAME
+            echo $DOCKER_HUB_ACCESS_TOKEN
             echo $CIRCLE_SHA1
             docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_ACCESS_TOKEN}
             docker build -t ${DOCKER_HUB_USERNAME}/$CIRCLE_SHA1 .
