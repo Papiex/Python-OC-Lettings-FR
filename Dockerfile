@@ -1,11 +1,15 @@
 # Dockerfile
 FROM python:3.7
 
-COPY requirements.txt requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY . code
+# Copies the dependencies file inside the container + upgrade pip + install all dependencies
+RUN mkdir /code
 WORKDIR /code
+RUN pip install --upgrade pip
+COPY requirements.txt /code/
+RUN pip install -r requirements.txt
+
+# Copies the rest of the source code
+COPY . /code/
 
 EXPOSE 8000
 

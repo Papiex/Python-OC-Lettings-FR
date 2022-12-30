@@ -27,6 +27,7 @@ jobs:
       - setup_remote_docker:
           version: 19.03.13
           docker_layer_caching: true
+      #password stdin pour evité qu'il soit visible dans les logs ou l'historique du shell
       - run: |
           echo "$DOCKERHUB_PASSWORD" | docker login --username $DOCKERHUB_USERNAME --password-stdin
       - run: docker build -t $DOCKERHUB_USERNAME/python-oc-lettings-fr:$CIRCLE_SHA1 .
