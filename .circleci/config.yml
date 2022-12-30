@@ -28,12 +28,12 @@ jobs:
       - run:
           name: Deployment of the image to DockerHub
           command: |
-            echo $DOCKER_HUB_USERNAME
-            echo $DOCKER_HUB_ACCESS_TOKEN
+            echo $DOCKERHUB_USERNAME
+            echo $DOCKERHUB_PASSWORD
             echo $CIRCLE_SHA1
-            docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_ACCESS_TOKEN
-            docker build -t $DOCKER_HUB_USERNAME/$CIRCLE_SHA1 .
-            docker push $DOCKER_HUB_USERNAME/python-oc-lettings-fr/$CIRCLE_SHA1:latest
+            docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
+            docker build -t $DOCKERHUB_USERNAME/$CIRCLE_SHA1 .
+            docker push $DOCKERHUB_USERNAME/python-oc-lettings-fr/$CIRCLE_SHA1:latest
 
 
 
