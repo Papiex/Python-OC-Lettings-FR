@@ -1,6 +1,8 @@
 # Dockerfile
 FROM python:3.7
 
+ENV PYTHONUNBUFFERED=1
+
 # Copies the dependencies file inside the container + upgrade pip + install all dependencies
 RUN mkdir /code
 WORKDIR /code
