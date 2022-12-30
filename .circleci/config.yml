@@ -21,16 +21,19 @@ jobs:
 
   docker_deployment:
     docker:
-      - image: cimg/python:3.10.1
+      - image: cimg/python:3.8
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 19.03.13
-          docker_layer_caching: true
-      - run: |
-          echo "$DOCKERHUB_PASSWORD" | docker login --username $DOCKERHUB_USERNAME --password-stdin
-      - run: docker build -t user_name/circle_ci_python_example:$CIRCLE_SHA1 .
-      - run: docker push user_name/circle_ci_python_example:$CIRCLE_SHA1
+      - setup_remote_docker
+      - run:
+          name: Deployment of the image to DockerHub
+          command: |
+            echo $DOCKERHUB_USERNAME
+            echo $DOCKERHUB_PASSWORD
+            echo $CIRCLE_SHA1
+            docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
+            docker build -t $DOCKERHUB_USERNAME/$CIRCLE_SHA1 .
+            docker push $DOCKERHUB_USERNAME/python-oc-lettings-fr/$CIRCLE_SHA1:latest
 
 
 
