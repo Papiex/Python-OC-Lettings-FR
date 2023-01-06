@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   python: circleci/python@1.2
   docker: circleci/docker@2.1.3
+  heroku: heroku/cli@1.0
 
 jobs:
   build-and-test:
@@ -33,12 +34,27 @@ jobs:
       - run: docker build -t $DOCKERHUB_USERNAME/python-oc-lettings-fr:$CIRCLE_SHA1 .
       - run: docker push $DOCKERHUB_USERNAME/python-oc-lettings-fr:$CIRCLE_SHA1
 
+  heroku_deploy:
+      orbs: heroku
+      jobs:
+        - heroku/deploy-via-git
+
 
 
 workflows:
-  Run Tests and Linter:
+  Run Tests and Deploy:
     jobs:
       - build-and-test
       - docker_deployment:
           requires:
             - build-and-test
+          filters:
+            branches:
+              only: master
+      - heroku_deploy:
+          requires:
+            - build-and-test
+            - docker_deployment
+          filters:
+            branches:
+              only: master
