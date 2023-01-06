@@ -7,7 +7,7 @@ orbs:
 jobs:
   build-and-test:
     docker:
-      - image: cimg/python:3.10.1
+      - image: cimg/python:3.10
     steps:
       - checkout
       - python/install-packages:
@@ -21,7 +21,7 @@ jobs:
 
   docker_deployment:
     docker:
-      - image: cimg/python:3.10.1
+      - image: cimg/python:3.10
     steps:
       - checkout
       - setup_remote_docker:
