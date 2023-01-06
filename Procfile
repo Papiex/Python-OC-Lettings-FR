@@ -1,1 +1,1 @@
-web: gunicorn python-oc-lettings.wsgi
+web: gunicorn oc_lettings_site.wsgi
