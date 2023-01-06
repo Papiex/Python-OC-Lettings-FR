@@ -41,7 +41,6 @@ jobs:
       - checkout
       - run:
           command: |
-            . venv/bin/activate
             heroku container:login --api-key $HEROKU_API_KEY
             heroku container:push web --app $HEROKU_APP_NAME
             heroku container:release web --app $HEROKU_APP_NAME
