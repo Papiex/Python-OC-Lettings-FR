@@ -35,8 +35,16 @@ jobs:
       - run: docker push $DOCKERHUB_USERNAME/python-oc-lettings-fr:$CIRCLE_SHA1
 
   heroku_deploy:
-      jobs:
-        - heroku/deploy-via-git
+    docker:
+      - image: cimg/python:3.10
+    steps:
+      - checkout
+      - run:
+          command: |
+            . venv/bin/activate
+            heroku container:login --api-key $HEROKU_API_KEY
+            heroku container:push web --app $HEROKU_APP_NAME
+            heroku container:release web --app $HEROKU_APP_NAME
 
 
 
