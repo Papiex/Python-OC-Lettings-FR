@@ -35,7 +35,7 @@ jobs:
       - run: docker push $DOCKERHUB_USERNAME/python-oc-lettings-fr:$CIRCLE_SHA1
 
   heroku_deploy:
-      orbs: heroku
+      orb: heroku
       jobs:
         - heroku/deploy-via-git
 
