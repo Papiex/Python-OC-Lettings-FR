@@ -40,6 +40,10 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install Heroku CLI
+          command: |
+            curl https://cli-assets.heroku.com/install.sh | sh
+      - run:
           command: |
             heroku container:login --api-key $HEROKU_API_KEY
             heroku container:push web --app $HEROKU_APP_NAME
