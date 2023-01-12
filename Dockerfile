@@ -13,6 +13,6 @@ RUN pip install -r requirements.txt
 # Copies the rest of the source code
 COPY . /code/
 
-EXPOSE 8000
+ENV PORT=8000
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:$PORT"]
