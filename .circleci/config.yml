@@ -35,15 +35,18 @@ jobs:
       - run: docker push $DOCKERHUB_USERNAME/python-oc-lettings-fr:$CIRCLE_SHA1
 
   heroku_deploy:
-    docker:
-      - image: cimg/python:3.10
+    machine: true
     steps:
       - checkout
       - run:
-          curl https://cli-assets.heroku.com/install.sh | sh
-          heroku container:login
-          heroku container:push -a ${HEROKU_APP_NAME} web
-          heroku container:release -a ${HEROKU_APP_NAME} web
+          name: heroku CLI
+          command: curl https://cli-assets.heroku.com/install.sh | sh
+      - run:
+          name: Deploy Heroku
+          command:   |
+              HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:login
+              HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:push -a ${HEROKU_APP_NAME} web
+              HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:release -a ${HEROKU_APP_NAME} web
 
 
 
