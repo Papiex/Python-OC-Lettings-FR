@@ -6,7 +6,7 @@ orbs:
   heroku: circleci/heroku@2.0.0
 
 jobs:
-  build-and-test:
+  linter_and_tests:
     docker:
       - image: cimg/python:3.10
     steps:
@@ -34,12 +34,12 @@ jobs:
       - run: docker build -t $DOCKERHUB_USERNAME/python-oc-lettings-fr:$CIRCLE_SHA1 .
       - run: docker push $DOCKERHUB_USERNAME/python-oc-lettings-fr:$CIRCLE_SHA1
 
-  heroku_deploy:
+  heroku_deployment:
     machine: true
     steps:
       - checkout
       - run:
-          name: heroku CLI
+          name: Heroku CLI installation
           command: curl https://cli-assets.heroku.com/install.sh | sh
       - run:
           name: Deploy Heroku
@@ -53,16 +53,16 @@ jobs:
 workflows:
   Run Tests and Deploy:
     jobs:
-      - build-and-test
+      - linter_and_tests
       - docker_deployment:
           requires:
-            - build-and-test
+            - linter_and_tests
           filters:
             branches:
               only: master
-      - heroku_deploy:
+      - heroku_deployment:
           requires:
-            - build-and-test
+            - linter_and_tests
             - docker_deployment
           filters:
             branches:
