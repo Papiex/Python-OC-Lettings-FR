@@ -78,4 +78,10 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 ### Déploiement Docker
 
+Requis :
+- Docker Desktop "https://www.docker.com/products/docker-desktop/"
+Pour construire une image en local(démarrer Docker Desktop) :
+- `docker build -t python-oc-lettings-fr .`
+Pour la lancer en local(aller dans image dans Docker Desktop et copier/coller l'image) :
+- `docker run -p 8080:8080 Pseudo/python-oc-lettings-fr:votreimage`
 ### Déploiement Heroku
