@@ -76,12 +76,31 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1`
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
 
-### Déploiement Docker
+### Déploiement
 
 Requis :
+- Compte Heroku
+- Heroku CLI "https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli"
+- Compte Docker
 - Docker Desktop "https://www.docker.com/products/docker-desktop/"
-Pour construire une image en local(démarrer Docker Desktop) :
-- `docker build -t python-oc-lettings-fr .`
-Pour la lancer en local(aller dans image dans Docker Desktop et copier/coller l'image) :
-- `docker run -p 8080:8080 Pseudo/python-oc-lettings-fr:votreimage`
-### Déploiement Heroku
+- Compte CircleCI
+
+Se connecter à votre compte Heroku et DockerHub dans le shell à la racine du projet
+(...\Python-OC-Lettings-FR>) avec ces commandes :
+- `heroku login`
+- `docker login`
+
+Créer un nouveau projet heroku avec cette commande ou directement sur le site :
+- `heroku create nom_application`
+
+Créer un repo avec cette commande ou directement sur DockerHub :
+- `docker create repository -n python-oc-lettings-fr`
+
+
+
+Variables d'environnement application web CIRCLECI à ajouter dans le projet CIRCLECI:
+
+DOCKERHUB_PASSWORD
+DOCKERHUB_USERNAME
+HEROKU_APP_NAME (Correspond au nom d'application heroku que vous avez créer auparavant)
+HEROKU_TOKEN (Token disponible dans votre projet heroku)
