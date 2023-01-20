@@ -25,6 +25,7 @@ jobs:
       - image: cimg/python:3.10
     steps:
       - checkout
+      - run: echoDEBUG=false >> $BASH_ENV
       - setup_remote_docker:
           version: 19.03.13
           docker_layer_caching: true
@@ -38,6 +39,7 @@ jobs:
     machine: true
     steps:
       - checkout
+      - run: echoDEBUG=false >> $BASH_ENV
       - run:
           name: Heroku CLI installation
           command: curl https://cli-assets.heroku.com/install.sh | sh
