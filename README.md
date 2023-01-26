@@ -85,35 +85,47 @@ Requis :
 - Docker Desktop "https://www.docker.com/products/docker-desktop/"
 - Compte CircleCI
 
-Se connecter à votre compte Heroku et DockerHub dans le shell à la racine du projet
+- Se connecter à votre compte Heroku et DockerHub dans le shell à la racine du projet
 (...\Python-OC-Lettings-FR>) avec ces commandes :
-- `heroku login`
-- `docker login`
+  - `heroku login`
+  - `docker login`
 
+- Créer un depôt Docker sur DockerHub
+- Créer une application Heroku
+- Créer un projet Sentry basé sur Django
 
 #### Lancement application en local via la création d'une image Docker :
 
 - Démarrer DockerHub
 - Lancer cette commande à la racine du projet `docker build -t python-oc-lettings-fr .`
-- Lancer l'application avec cette commande : `docker run -p 8000:8000 papiex/python-oc-lettings-fr:image_que_vous_venez_de_créer`
+- Lancer l'application avec cette commande : `docker run -p 8000:8000 image_que_vous_venez_de_créer`
 - Rendez-vous sur `http://localhost:8000/` dans votre naviguateur pour accéder à l'application
+
+
+#### Déploiement sur heroku, docker de l'application via CIRCLECI :
+
+Explication des étapes du déploiement :
+- `linter_and_tests`
+- `docker_deployment`
+- `heroku_deployment`
+
+- Lié le repository de Github avec votre compte CircleCI
+- Ajouter la variable d'environnement SENTRY_DSN dans votre application Heroku
+- Ajouter ces variables d'environnement dans le projet CIRCLECI:
+  - DOCKERHUB_PASSWORD
+  - DOCKERHUB_USERNAME
+  - HEROKU_APP_NAME
+  - HEROKU_TOKEN
+  - SENTRY_DSN
+- Ouvrer le fichier nommé `.env` dans la racine du projet puis modifier cette ligne à l'intérieur :
+  - `SENTRY_DSN=votre_sentry_dsn_trouvable_dans_le_projet_sentry`
+- Effectuer un commit vide ou pas puis faite un git push sur la branche master de votre repo.
+
+
 
 #### Lancement application en local via la récupération d'une image Docker :
 
 Lien repository Docker :
-- `https://hub.docker.com/repository/docker/papiex/python-oc-lettings-fr/` (Choisir le tag de la dernière image déployée)
-- Lancer cette commande `docker run -p 8000:8000 papiex/python-oc-lettings-fr:image_que_vous_souhaitez` (Si elle n'est pas trouvé en local, elle sera automatiquement récupérée sur DockerHub)
+- Aller sur votre depôt Docker (Choisir le tag de la dernière image déployée)
+- Lancer cette commande `docker run -p 8000:8000 votre_pseudo/votre_nom_de_depot:image_que_vous_souhaitez` (Si elle n'est pas trouvé en local, elle sera automatiquement récupérée sur DockerHub)
 - Rendez-vous sur `http://localhost:8000/` dans votre naviguateur pour accéder à l'application
-
-
-#### Déploiement application via CIRCLECI :
-
-
-- Lié le repository de Github avec votre compte CircleCI
-- Ajouter ces variables d'environnement dans le projet CIRCLECI:
-
-  -DOCKERHUB_PASSWORD
-  -DOCKERHUB_USERNAME
-  -HEROKU_APP_NAME
-  -HEROKU_TOKEN
-  -SENTRY_DSN
