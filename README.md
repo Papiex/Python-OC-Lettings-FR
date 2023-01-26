@@ -90,17 +90,30 @@ Se connecter à votre compte Heroku et DockerHub dans le shell à la racine du p
 - `heroku login`
 - `docker login`
 
-Créer un nouveau projet heroku avec cette commande ou directement sur le site :
-- `heroku create nom_application`
 
-Créer un repo avec cette commande ou directement sur DockerHub :
-- `docker create repository -n python-oc-lettings-fr`
+#### Lancement application en local via la création d'une image Docker :
+
+- Démarrer DockerHub
+- Lancer cette commande à la racine du projet `docker build -t python-oc-lettings-fr .`
+- Lancer l'application avec cette commande : `docker run -p 8000:8000 papiex/python-oc-lettings-fr:image_que_vous_venez_de_créer`
+- Rendez-vous sur `http://localhost:8000/` dans votre naviguateur pour accéder à l'application
+
+#### Lancement application en local via la récupération d'une image Docker :
+
+Lien repository Docker :
+- `https://hub.docker.com/repository/docker/papiex/python-oc-lettings-fr/` (Choisir le tag de la dernière image déployée)
+- Lancer cette commande `docker run -p 8000:8000 papiex/python-oc-lettings-fr:image_que_vous_souhaitez` (Si elle n'est pas trouvé en local, elle sera automatiquement récupérée sur DockerHub)
+- Rendez-vous sur `http://localhost:8000/` dans votre naviguateur pour accéder à l'application
 
 
+#### Déploiement application via CIRCLECI :
 
-Variables d'environnement application web CIRCLECI à ajouter dans le projet CIRCLECI:
 
-DOCKERHUB_PASSWORD
-DOCKERHUB_USERNAME
-HEROKU_APP_NAME (Correspond au nom d'application heroku que vous avez créer auparavant)
-HEROKU_TOKEN (Token disponible dans votre projet heroku)
+- Lié le repository de Github avec votre compte CircleCI
+- Ajouter ces variables d'environnement dans le projet CIRCLECI:
+
+  -DOCKERHUB_PASSWORD
+  -DOCKERHUB_USERNAME
+  -HEROKU_APP_NAME
+  -HEROKU_TOKEN
+  -SENTRY_DSN
