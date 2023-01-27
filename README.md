@@ -18,7 +18,7 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 #### Cloner le repository
 
 - `cd /path/to/put/project/in`
-- `git clone https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings-FR.git`
+- `git clone https://github.com/Papiex/Python-OC-Lettings-FR.git`
 
 #### Créer l'environnement virtuel
 
@@ -105,11 +105,14 @@ Requis :
 #### Déploiement sur heroku, docker de l'application via CIRCLECI :
 
 Explication des étapes du déploiement :
-- `linter_and_tests`
-- `docker_deployment`
-- `heroku_deployment`
+**l'étape linter_and_tests sera effectué peu importe la branche, docker_deployment et heroku_deployment ne se lanceront que si l'on est sur la branche master**
+- `linter_and_tests` lancera flake8 et pytest (cette étape sera effectué sur n'importe quelle branche)
+- `docker_deployment` si l'étape linter_and_tests à réussi, une image de l'application sera déployée sur DockerHub
+- `heroku_deployment` si le docker_deployment à réussi, l'application est déployée en ligne grâce à Heroku
+Chaque étape se lance que si l'étape précédente à réussi.
 
-- Lié le repository de Github avec votre compte CircleCI
+
+- Lié le repository de Github cloné avec votre compte CircleCI
 - Ajouter la variable d'environnement SENTRY_DSN dans votre application Heroku
 - Ajouter ces variables d'environnement dans le projet CIRCLECI:
   - DOCKERHUB_PASSWORD
@@ -119,13 +122,13 @@ Explication des étapes du déploiement :
   - SENTRY_DSN
 - Ouvrer le fichier nommé `.env` dans la racine du projet puis modifier cette ligne à l'intérieur :
   - `SENTRY_DSN=votre_sentry_dsn_trouvable_dans_le_projet_sentry`
-- Effectuer un commit vide ou pas puis faite un git push sur la branche master de votre repo.
+- Effectuer un commit vide ou pas puis faite un git push sur la branche master de votre repo cloné.
 
 
 
 #### Lancement application en local via la récupération d'une image Docker :
 
 Lien repository Docker :
-- Aller sur votre depôt Docker (Choisir le tag de la dernière image déployée)
-- Lancer cette commande `docker run -p 8000:8000 votre_pseudo/votre_nom_de_depot:image_que_vous_souhaitez` (Si elle n'est pas trouvé en local, elle sera automatiquement récupérée sur DockerHub)
+- Aller sur le dêpot Docker `https://hub.docker.com/r/papiex/python-oc-lettings-fr` (Choisir le tag de la dernière image déployée)
+- Lancer cette commande `docker run -p 8000:8000 papiex/python-oc-lettings-fr:dernier_tag` (Si elle n'est pas trouvé en local, elle sera automatiquement récupérée sur DockerHub)
 - Rendez-vous sur `http://localhost:8000/` dans votre naviguateur pour accéder à l'application
