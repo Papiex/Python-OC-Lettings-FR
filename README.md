@@ -78,12 +78,16 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 ### Déploiement
 
+L'application déployée avec heroku: `https://python-oc-lettings-672.herokuapp.com/`
+Suivi des erreur avec Sentry:
+
 Requis :
 - Compte Heroku
-- Heroku CLI "https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli"
+- Heroku CLI `https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli`
 - Compte Docker
-- Docker Desktop "https://www.docker.com/products/docker-desktop/"
+- Docker Desktop `https://www.docker.com/products/docker-desktop/`
 - Compte CircleCI
+- Compte Sentry
 
 - Se connecter à votre compte Heroku et DockerHub dans le shell à la racine du projet
 (...\Python-OC-Lettings-FR>) avec ces commandes :
@@ -102,7 +106,7 @@ Requis :
 - Rendez-vous sur `http://localhost:8000/` dans votre naviguateur pour accéder à l'application
 
 
-#### Déploiement sur heroku, docker de l'application via CIRCLECI :
+#### Déploiement sur heroku, docker de l'application via un pipeline CI/CD CIRCLECI :
 
 Explication des étapes du déploiement :
 **l'étape linter_and_tests sera effectué peu importe la branche, docker_deployment et heroku_deployment ne se lanceront que si l'on est sur la branche master**
@@ -111,7 +115,7 @@ Explication des étapes du déploiement :
 - `heroku_deployment` si le docker_deployment à réussi, l'application est déployée en ligne grâce à Heroku
 Chaque étape se lance que si l'étape précédente à réussi.
 
-
+Etapes pour effectuer un déploiement :
 - Lié le repository de Github cloné avec votre compte CircleCI
 - Ajouter la variable d'environnement SENTRY_DSN dans votre application Heroku
 - Ajouter ces variables d'environnement dans le projet CIRCLECI:
@@ -123,6 +127,7 @@ Chaque étape se lance que si l'étape précédente à réussi.
 - Ouvrer le fichier nommé `.env` dans la racine du projet puis modifier cette ligne à l'intérieur :
   - `SENTRY_DSN=votre_sentry_dsn_trouvable_dans_le_projet_sentry`
 - Effectuer un commit vide ou pas puis faite un git push sur la branche master de votre repo cloné.
+- Une fois l'application en ligne, vous pouvez créer une erreur pour vérifier que sentry est bien en place en vous rendant à cette adresse: `https://nom_application.herokuapp.com/sentry-debug/`
 
 
 
