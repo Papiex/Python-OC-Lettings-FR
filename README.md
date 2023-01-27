@@ -137,7 +137,6 @@ Etapes pour effectuer un déploiement :
 
 ### Lancement application en local via la récupération d'une image Docker :
 
-Lien repository Docker :
 - Aller sur le dêpot Docker `https://hub.docker.com/r/papiex/python-oc-lettings-fr` (Choisir le tag de la dernière image déployée)
 - Lancer cette commande `docker run -p 8000:8000 papiex/python-oc-lettings-fr:dernier_tag` (Si elle n'est pas trouvé en local, elle sera automatiquement récupérée sur DockerHub)
 - Rendez-vous sur `http://localhost:8000/` dans votre naviguateur pour accéder à l'application
