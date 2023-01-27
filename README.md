@@ -79,7 +79,7 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 ## Déploiement
 
 L'application déployée avec heroku: `https://python-oc-lettings-672.herokuapp.com/`
-Suivi des erreur avec Sentry:
+Suivi des erreur avec Sentry (exemple) : `https://papiex.sentry.io/share/issue/cab01c21827944fab4842ae9df918239/`
 
 Requis :
 - Compte Heroku
@@ -109,7 +109,11 @@ Requis :
 ### Déploiement sur heroku, docker de l'application via un pipeline CI/CD CIRCLECI :
 
 Explication des étapes du déploiement :
-**l'étape linter_and_tests sera effectué peu importe la branche, docker_deployment et heroku_deployment ne se lanceront que si l'on est sur la branche master**
+
+
+__l'étape linter_and_tests sera effectué peu importe la branche, docker_deployment et heroku_deployment ne se lanceront que si l'on est sur la branche master__
+
+
 - `linter_and_tests` lancera flake8 et pytest (cette étape sera effectué sur n'importe quelle branche)
 - `docker_deployment` si l'étape linter_and_tests à réussi, une image de l'application sera déployée sur DockerHub
 - `heroku_deployment` si le docker_deployment à réussi, l'application est déployée en ligne grâce à Heroku
