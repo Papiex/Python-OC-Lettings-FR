@@ -76,7 +76,7 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1`
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
 
-### Déploiement
+## Déploiement
 
 L'application déployée avec heroku: `https://python-oc-lettings-672.herokuapp.com/`
 Suivi des erreur avec Sentry:
@@ -98,7 +98,7 @@ Requis :
 - Créer une application Heroku
 - Créer un projet Sentry basé sur Django
 
-#### Lancement application en local via la création d'une image Docker :
+### Lancement application en local via la création d'une image Docker :
 
 - Démarrer DockerHub
 - Lancer cette commande à la racine du projet `docker build -t python-oc-lettings-fr .`
@@ -106,7 +106,7 @@ Requis :
 - Rendez-vous sur `http://localhost:8000/` dans votre naviguateur pour accéder à l'application
 
 
-#### Déploiement sur heroku, docker de l'application via un pipeline CI/CD CIRCLECI :
+### Déploiement sur heroku, docker de l'application via un pipeline CI/CD CIRCLECI :
 
 Explication des étapes du déploiement :
 **l'étape linter_and_tests sera effectué peu importe la branche, docker_deployment et heroku_deployment ne se lanceront que si l'on est sur la branche master**
@@ -131,7 +131,7 @@ Etapes pour effectuer un déploiement :
 
 
 
-#### Lancement application en local via la récupération d'une image Docker :
+### Lancement application en local via la récupération d'une image Docker :
 
 Lien repository Docker :
 - Aller sur le dêpot Docker `https://hub.docker.com/r/papiex/python-oc-lettings-fr` (Choisir le tag de la dernière image déployée)
